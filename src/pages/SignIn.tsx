@@ -1,25 +1,25 @@
 import {
   IonCard,
   /* IonCardContent, */
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
-  IonListHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonNote,
+  IonFab,
+  IonFabButton
 } from '@ionic/react';
-import { logoFacebook } from 'ionicons/icons';
+import { logoFacebook,help } from 'ionicons/icons';
 import React from 'react';
 import './SignIn.css';
+import { RouteComponentProps } from 'react-router';
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC<RouteComponentProps> = (props) => {
   return (
     <IonPage>
       <IonHeader>
@@ -28,24 +28,25 @@ const SignIn: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonCard className="welcome-card">
-          <img src="/assets/shapes.svg" alt="" />
-          <IonCardHeader>
-            <IonCardSubtitle>SignIn</IonCardSubtitle>
-            <IonCardTitle>SignIn</IonCardTitle>
-          </IonCardHeader>
-        </IonCard>
-
-        <IonList lines="none">
-          <IonListHeader>
-            <IonLabel>Sign In with:</IonLabel>
-          </IonListHeader>
-          <IonItem href="" target="">
-            <IonIcon slot="start" color="medium" icon={logoFacebook} />
-            <IonLabel>Facebook</IonLabel>
-          </IonItem>
-        </IonList>
-      </IonContent>
+    <IonList>
+      <IonItem onClick={() => props.history.push('/faq')}>
+        <IonLabel>
+          <h1>Facebook Login</h1>
+          <IonNote>Login with Facebook</IonNote>
+        </IonLabel>
+        <IonIcon icon={logoFacebook} slot="end">
+          5 Days
+        </IonIcon>
+      </IonItem>
+    </IonList>
+    <IonFab vertical="bottom" horizontal="end" slot="fixed">
+      <IonFabButton>
+        <IonFabButton onClick={() => props.history.push('/faq')}>
+          <IonIcon icon={help} />
+        </IonFabButton>
+      </IonFabButton>
+    </IonFab>
+  </IonContent>
     </IonPage>
   );
 };
